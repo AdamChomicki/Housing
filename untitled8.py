@@ -104,6 +104,7 @@ housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4,
              )
 plt.legend()
 
+# WSPÓŁCZYNNIK PEARSONA
 corr_matrix = housing.corr()
 
 corr_matrix["median_house_value"].sort_values(ascending=False)
@@ -115,12 +116,14 @@ scatter_matrix(housing[attributes], figsize=(12,8))
 
 housing.plot(kind="scatter", x="median_income", y="median_house_value", alpha=0.1)
 
+# PARY ATRYBUTÓW
 housing["Pokoje_na_rodzinę"] = housing["total_rooms"]/housing["households"]
-housing["Sypialnie_na_rodzinę"] = housing["total_bedrooms"]/housing["total_rooms"]
+housing["Sypialnie_na_pokoje"] = housing["total_bedrooms"]/housing["total_rooms"]
 housing["Populacja_na_rodzinę"] = housing["population"]/housing["households"]
 
 corr_matrix = housing.corr()
 corr_matrix["median_house_value"].sort_values(ascending=False)
+
 
 housing = strat_train_set.drop("median_house_value", axis=1)
 housing_labels = strat_train_set["median_house_value"].copy()
